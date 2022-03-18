@@ -1,11 +1,19 @@
-function expand(event){
-    event.currentTarget.classList.toggle('expand');
+function collapseAll(event) {
+  document.querySelectorAll(`.accordion article:not(${event.currentTarget})`).forEach((el) => {
+    el.classList.remove("expand");
+  });
 }
 
-var faqs = document.querySelectorAll("section.accordion > main > section");
-
-for(let i = 0; i < faqs.length; i++) {
-    const e = faqs[i];
-
-    e.addEventListener("click", expand);
+function expand(event) {
+  collapseAllOthers(event);
+  event.currentTarget.classList.toggle("expand");
 }
+
+function collapseOne(element) {
+  element.classList.remove("expand");
+}
+
+const faqs = document.querySelectorAll(".accordion article");
+faqs.forEach((faq) => {
+  faq.addEventListener("click", expand);
+});

@@ -1,267 +1,184 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
-    font-family: 'Kumbh Sans', sans-serif;   
-    font-weight: 400;   
-    font-size: 12px; 
+  /* Page Color Variables */
+  --top-gradient-color: hsl(273, 75%, 66%);
+  --bottom-gradient-color: hsl(240, 73%, 65%);
 
-    /* Page Color Variables */
-    --top-gradient-color: hsl(273, 75%, 66%);
-    --bottom-gradient-color: hsl(240, 73%, 65%);
+  --heading-text-color: hsl(238, 29%, 16%);
 
-    --heading-text-color: hsl(238, 29%, 16%);
+  --accordion-heading-text-color: hsl(240, 6%, 50%);
+  --hover-accordion-heading-text-color: hsl(14, 88%, 65%);
+  --active-accordion-heading-text-color: hsl(237, 12%, 33%);
 
-    --accordion-heading-text-color: hsl(240, 6%, 50%);
-    --hover-accordion-heading-text-color: hsl(14, 88%, 65%);
-    --active-accordion-heading-text-color: hsl(237, 12%, 33%);
+  --body-text-color: hsl(240, 6%, 50%);
+  --divider-color: hsl(240, 5%, 91%);
 
-    --body-text-color: hsl(240, 6%, 50%);
-    --divider-color: hsl(240, 5%, 91%);
-}
-
-html {
-    background: linear-gradient(to bottom, var(--top-gradient-color) 20%, var(--bottom-gradient-color) 80%);   
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-
-    min-width: 300px;
-    min-height: 650px;
+  /* Page Font Defaults */
+  font-family: "Kumbh Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 62.5%;
 }
 
 body {
-    width: 100vw;
-    height: 100%;
+  min-width: 37.5rem;
+  min-height: 100vh;
+
+  display: grid;
+  grid-template-columns: minmax(2.4rem, 1fr) minmax(calc(37.5rem - 4.8rem), 80ch) minmax(2.4rem, 1fr);
+  grid-template-rows: 4rem 10.8rem minmax(53.5rem, max-content) 6rem minmax(2.5rem, 1fr);
+  grid-template-areas:
+    ". . ."
+    ". 	illustration ."
+    ". 	main 	."
+    ". 	footer 		."
+    ". . .";
+
+  justify-items: center;
+
+  background: linear-gradient(to bottom, var(--top-gradient-color) 20%, var(--bottom-gradient-color) 80%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+main {
+  min-height: 53.5rem;
+  min-width: 32.7rem;
+  width: 100%;
+
+  padding: 13rem 2.4rem 3.2rem 2.4rem;
+
+  background-color: #f5f5f5;
+  border-radius: 2.2rem;
+
+  grid-area: main;
+}
+
+#mobile-illustration {
+  grid-area: illustration;
+  z-index: 1;
 }
 
 h1 {
-    font-size: 2.5rem;
-    margin-bottom: .25in;
+  font-size: 3.2rem;
+  font-weight: 600;
+  line-height: 4rem;
+  text-align: center;
 }
 
-h4 {
-    color: var(--accordion-heading-text-color);
-    font-size: 12px;
-    font-weight: 400;
-    padding: 1rem 0 1rem 0;
-    transition: all ease .5s;
+h2 {
+  font-size: 1.4rem;
+  line-height: 1.7rem;
+  letter-spacing: 0.0075em;
+
+  color: var(--accordion-heading-text-color);
+
+  padding: 1rem 0;
+  transition: all ease 0.5s;
 }
 
-h4:hover {
+@media (hover: hover) {
+  h2:hover {
     color: var(--hover-accordion-heading-text-color);
+  }
 }
 
-footer {
-    align-self: center;
-    justify-self: center;
+h2:active {
+  font-weight: 600;
+  color: var(--active-accordion-heading-text-color);
+}
+
+.expand h2 {
+  color: var(--heading-text-color);
+  font-weight: 700;
+}
+
+.accordion > article {
+  border-bottom: 0.25px solid var(--divider-color);
+  padding: 0.6rem 0;
+
+  display: grid;
+  grid-template-columns: 1fr 1.6rem;
+  grid-template-rows: max-content minmax(0, max-content);
+  grid-template-areas:
+    "heading expand-icon"
+    "p .";
+
+  align-items: center;
+}
+
+.expand-icon {
+  height: 100%;
+  align-self: center;
+  animation: flipIconBack 0.5s ease 1 forwards;
+  transform-origin: center;
+}
+
+.expand .expand-icon {
+  animation: flipIcon 0.5s ease 1 forwards;
+  transform-origin: center;
 }
 
 p {
-    color: var(--body-text-color);
-    font-size: 1rem;
-    line-height: 1.5em;
-    width: calc(100% - 15px);
+  color: var(--body-text-color);
+  font-size: 1.4rem;
+  line-height: 1.68rem;
 }
 
-.accordion > main > section {
-    border-bottom: .25px solid var(--divider-color);
-    padding: 1rem 0;
+.accordion p {
+  height: 0;
+
+  visibility: hidden;
+  overflow: hidden;
+  opacity: 0;
+
+  padding-bottom: 0;
+  transition: all ease 0.5s;
 }
 
-.accordion h4::after {
-    content: url("./images/icon-arrow-down.svg");
-    display: block;
-    float: right;
-    animation: flipIconBack .5s ease 1 forwards;
-    transform-origin: center;
+.accordion .expand p {
+  height: fit-content;
+  visibility: visible;
+  opacity: 100%;
+  padding-bottom: 1.4rem;
 }
 
-.accordion > main main {
-    visibility: hidden;
-    overflow: hidden;
-    opacity: 0;
-    max-height: 0;
-    transition: all ease .5s;
+footer {
+  font-size: 1.1rem;
+
+  text-align: center;
+  line-height: 1.5rem;
+
+  align-self: center;
+  justify-self: center;
+
+  grid-area: footer;
 }
 
-.attribution { 
-    font-size: 11px; 
-}
-
-.attribution a { 
-    color: hsl(228, 4%, 25%); 
-}
-
-
-.card {
-    background-color: #f5f5f5;
-    border-radius: 20px;
-}
-
-section.expand > main {
-    visibility: visible;
-    opacity: 100%;
-    max-height: 50px;
-}
-
-.expand h4 {
-    color: var(--heading-text-color);
-    font-weight: 700;
-}
-
-.expand h4::after {
-    animation: flipIcon .5s ease 1 forwards;
-    transform-origin: center;
+footer a {
+  color: hsl(228, 4%, 25%);
 }
 
 @keyframes flipIcon {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(180deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
 }
 
 @keyframes flipIconBack {
-    0% {
-        transform: rotate(180deg);
-    }
-    100% {
-        transform: rotate(0deg);
-    }
-}
-
-@media only screen and (max-width: 800px){
-    body {
-        display: grid;
-        grid-template-columns: 6.25% 6.25% 1fr 6.25% 6.25%;
-        grid-template-rows: .5in 1.375in 1.375in min-content .5in .875in;
-    }
-
-    footer {
-        grid-row: 6 / -1;
-        grid-column: 2 / -2;
-
-        text-align: center;
-        line-height: 1.5rem;
-    }
-
-    .accordion {
-        grid-row: 4 / 5;
-        grid-column: 3 / 4;
-    }
-
-    /* Center header on mobile only */
-    .accordion > header {
-        text-align: center;
-    }
-    
-    .background {
-        grid-row: 2 / 4;
-        grid-column: 3 / 4;
-
-        width: 2.25in;
-        
-
-        justify-self: center;
-        align-content: center;
-
-        z-index: 10;
-
-        position: relative;
-        top: 135px;
-    }
-
-    .card {
-        grid-row: 3 / -2;
-        grid-column: 2 / -2;
-    }
-
-    .desktop {
-        display: none;
-    }
-
-    .illustration {
-        grid-row: 2 / 4;
-        grid-column: 3 / 4;
-        z-index: 2;
-
-        width: 2.5in;
-
-        justify-self: center;
-        align-content: center;
-
-        position: relative;
-        top: 35px;
-        right: 13px;
-    }
-
-    .mobile {
-        display: block;
-    }
-}
-
-@media only screen and (min-width: 800px){
-    body {
-        display: grid;
-
-        grid-template-rows: 10% .75in min-content .75in 10%;
-        grid-template-columns: .5fr .25in minmax(30%, 2fr) .5in minmax(30%, 2fr) .5in .5fr;
-    }
-
-    footer {
-        grid-row: -2 / -1;
-        grid-column: 3 / -2;
-
-        padding: 1rem;
-    }
-
-    .accordion {
-        grid-row: 3 / 4;
-        grid-column: 5 / 6;
-
-        align-self: center;
-    }
-
-    .background {
-        grid-row: 2 / -2;
-        grid-column: 3 / 4;
-
-        z-index: 0;
-        border-radius: 20px;
-
-        background-image: url('./images/bg-pattern-desktop.svg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: 100% 65%;
-        background-size: 250%;
-    }
-
-    .card {
-        grid-row: 2 / -2;
-        grid-column: 3 / -2;
-    }
-
-    .desktop {
-        display: block;
-    }
-
-    .illustration {
-        grid-row: 3 / 4;
-        grid-column: 2 / 4;
-
-        z-index: 1;
-        width: 100%;
-
-        align-self: center;
-    }
-
-    .mobile {
-        display: none;
-    }
+  0% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }

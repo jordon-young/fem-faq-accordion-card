@@ -1,94 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- displays site properly based on user's device -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <title>Jordon Young | FAQ Accordion Card</title>
 
-  <title>Frontend Mentor | FAQ Accordion Card</title>
+    <!-- Link Page Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet" />
 
-  <!-- Link Page Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Link Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="./main.css" />
 
-  <!-- Link Stylesheet -->
-  <link rel="stylesheet" type="text/css" href="./main.css" />
-</head>
+    <!-- Link JS -->
+    <script defer src="./accordion.js"></script>
+  </head>
 
-<body>
+  <body>
+    <!-- 
+      <img class="illustration mobile" src="images/illustration-woman-online-mobile.svg" hidden />
+      <img class="illustration desktop" src="images/illustration-woman-online-desktop.svg" hidden />
+      <img class="background mobile" src="images/bg-pattern-mobile.svg" hidden />
+      <div class="desktop background" hidden></div> 
+    -->
 
-  <img class="illustration mobile" src="images/illustration-woman-online-mobile.svg" hidden/>
-  <img class="illustration desktop" src="images/illustration-woman-online-desktop.svg" hidden />
-  <img class="background mobile" src="images/bg-pattern-mobile.svg" hidden />
-  <div class="desktop background"></div>
+    <img id="mobile-illustration" src="./images/illustration-mobile.svg" alt="Woman at Computer" />
 
-  <section class="card">
-  </section>
-
-  <section class="accordion">
-      <header>
+    <main>
+      <article class="accordion">
         <h1>FAQ</h1>
-      </header>
-      <main>
-        <section>
-          <header>
-            <h4>How many team members can I invite?</h4>
-          </header>
-          <main>
-            <p>You can invite up to 2 additional users on the Free plan. There is no limit on
-              team members for the Premium plan.</p>
-          </main>
-        </section>
 
-        <section>
-          <header>
-            <h4>What is the maximum file upload size?</h4>
-          </header>
-          <main>
-            <p>No more than 2GB. All files in your account must fit your allotted storage space.</p>
-          </main>
-        </section>
+        <article>
+          <h2>How many team members can I invite?</h2>
+          <svg
+            class="expand-icon"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M4 5.799L8 9.799L12 5.799" stroke="#F47B56" stroke-width="2" />
+          </svg>
+          <p>
+            You can invite up to 2 additional users on the Free plan. There is no limit on team members for the Premium
+            plan.
+          </p>
+        </article>
 
-        <section>
-          <header>
-            <h4>How do I reset my password?</h4>
-          </header>
-          <main>
-            <p>Click “Forgot password” from the login page or “Change password” from your profile page.
-              A reset link will be emailed to you.</p>
-          </main>
-        </section>
+        <article>
+          <h2>What is the maximum file upload size?</h2>
+          <svg
+            class="expand-icon"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M4 5.799L8 9.799L12 5.799" stroke="#F47B56" stroke-width="2" />
+          </svg>
+          <p>No more than 2GB. All files in your account must fit your allotted storage space.</p>
+        </article>
 
-        <section>
-          <header>
-            <h4>Can I cancel my subscription?</h4>
-          </header>
-          <main>
-            <p>Yes! Send us a message and we’ll process your request no questions asked.</p>
-          </main>
-        </section>
+        <article>
+          <h2>How do I reset my password?</h2>
+          <svg
+            class="expand-icon"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M4 5.799L8 9.799L12 5.799" stroke="#F47B56" stroke-width="2" />
+          </svg>
+          <p>
+            Click “Forgot password” from the login page or “Change password” from your profile page. A reset link will
+            be emailed to you.
+          </p>
+        </article>
 
-        <section>
-          <header>
-            <h4>Do you provide additional support?</h4>
-          </header>
-          <main>
-            <p>Chat and email support is available 24/7. Phone lines are open during normal business hours.</p>
-          </main>
-        </section>
-      </main>
-    </section>
+        <article>
+          <h2>Can I cancel my subscription?</h2>
+          <svg
+            class="expand-icon"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M4 5.799L8 9.799L12 5.799" stroke="#F47B56" stroke-width="2" />
+          </svg>
+          <p>Yes! Send us a message and we'll process your request no questions asked.</p>
+        </article>
 
-  <footer class="attribution">
-    <a href="https://www.frontendmentor.io/challenges/faq-accordion-card-XlyjD0Oam">Challenge</a> by <a
-      href="https://www.frontendmentor.io" target="_blank">Frontend Mentor</a>.
-    <nobr>Coded by <a href="https://jordonyoung.com/">Jordon Young</a>.</nobr>
-  </footer>
+        <article>
+          <h2>Do you provide additional support?</h2>
+          <svg
+            class="expand-icon"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M4 5.799L8 9.799L12 5.799" stroke="#F47B56" stroke-width="2" />
+          </svg>
+          <p>Chat and email support is available 24/7. Phone lines are open during normal business hours.</p>
+        </article>
+      </article>
+    </main>
 
-  <script src="./accordion.js"></script>
-</body>
-
+    <footer>
+      <p>
+        <a href="https://www.frontendmentor.io/challenges/faq-accordion-card-XlyjD0Oam">Challenge</a> by
+        <a href="https://www.frontendmentor.io" target="_blank">Frontend Mentor</a>.
+      </p>
+      <p>Coded by <a href="https://jordon-young.github.io/">Jordon Young</a>.</p>
+    </footer>
+  </body>
 </html>
