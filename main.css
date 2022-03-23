@@ -30,8 +30,8 @@ body {
   min-height: 100vh;
 
   display: grid;
-  grid-template-columns: minmax(2.4rem, 1fr) minmax(calc(37.5rem - 4.8rem), 80ch) minmax(2.4rem, 1fr);
-  grid-template-rows: minmax(4rem, 1fr) 10.8rem repeat(2, max-content) minmax(2.5rem, 1fr);
+  grid-template-columns: 1fr max-content 1fr;
+  grid-template-rows: minmax(4rem, 1fr) 10.8rem max-content max-content minmax(4rem, 1fr);
   grid-template-areas:
     ". . ."
     ". 	illustration ."
@@ -60,7 +60,7 @@ main {
 }
 
 #mobile-illustration {
-  grid-area: illustration;
+  grid-area: illustration / illustration / footer;
   z-index: 1;
 }
 
@@ -76,6 +76,7 @@ h1 {
 h2 {
   width: fit-content;
   font-size: 1.4rem;
+  font-weight: 400;
   line-height: 1.7rem;
   letter-spacing: 0.0075em;
 
@@ -126,10 +127,10 @@ h2:active {
 }
 
 p {
-  color: var(--body-text-color);
-  font-size: 1.4rem;
-  line-height: 1.68rem;
+  font-size: 1.2rem;
+  line-height: 1.7rem;
   margin-right: 1.6rem;
+  color: var(--body-text-color);
 }
 
 .accordion p {
@@ -152,16 +153,15 @@ p {
 footer {
   font-size: 1.1rem;
   text-align: center;
-  align-self: center;
   justify-self: center;
-  padding: 2rem;
+  padding-top: 2rem;
   grid-area: footer;
 }
 
 footer p,
 footer a {
   color: hsl(228, 4%, 10%);
-  line-height: 2.5rem;
+  line-height: 2.25rem;
 }
 
 @media (hover: hover) {
@@ -186,5 +186,64 @@ footer a {
   }
   100% {
     transform: rotate(0deg);
+  }
+}
+
+/* Desktop Layout */
+@media screen and (min-width: 69.875em) {
+  body {
+    grid-template-columns: 1fr 38.8rem 53.2rem 1fr;
+    grid-template-rows: minmax(10.8rem, 1fr) max-content minmax(10.8rem, 1fr);
+    grid-template-areas:
+      ". . . ."
+      "illustration main main ."
+      ". 	footer footer .";
+  }
+
+  main {
+    height: 50.9rem;
+    width: 92rem;
+
+    padding: 0;
+    border-radius: 2.4rem;
+
+    display: grid;
+    grid-template-columns: 38.8rem 53.2rem;
+    grid-template-rows: 100%;
+    grid-template-areas: "bg faqs";
+
+    overflow: hidden;
+  }
+
+  h1 {
+    text-align: left;
+  }
+
+  .accordion {
+    /* width: 34.8rem; */
+    padding: 6.2rem 9.6rem 7.6rem 8.8rem;
+    grid-area: faqs;
+  }
+
+  #mobile-illustration {
+    display: none;
+  }
+
+  #desktop-illustration,
+  #desktop-background {
+    display: block;
+    justify-self: right;
+    align-self: center;
+  }
+
+  #desktop-illustration {
+    grid-row: illustration;
+    grid-column: illustration / span 2;
+    z-index: 2;
+  }
+
+  #desktop-background {
+    grid-area: bg;
+    z-index: 1;
   }
 }
