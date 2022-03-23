@@ -1,19 +1,19 @@
-function collapseAll(event) {
-  document.querySelectorAll(`.accordion article:not(${event.currentTarget})`).forEach((el) => {
+function collapseAllOthers(event) {
+  document.querySelectorAll(`.accordion > article:not(#${event.currentTarget.id})`).forEach((el) => {
     el.classList.remove("expand");
   });
 }
 
-function expand(event) {
+function toggle(event) {
   collapseAllOthers(event);
   event.currentTarget.classList.toggle("expand");
 }
 
-function collapseOne(element) {
-  element.classList.remove("expand");
-}
-
+/*
+    Setup
+*/
 const faqs = document.querySelectorAll(".accordion article");
 faqs.forEach((faq) => {
-  faq.addEventListener("click", expand);
+  faq.addEventListener("click", collapseAllOthers);
+  faq.addEventListener("click", toggle);
 });
